@@ -27,7 +27,7 @@ class RAGBase:
         instructions=INSTRUCTIONS,
         prompt_template=PROMPT_TEMPLATE,
         course="llm-zoomcamp",
-        model="gpt-5.4-mini"
+        model="poolside/laguna-m.1:free"
     ):
         self.index = index
         self.llm_client = llm_client
@@ -74,7 +74,8 @@ class RAGBase:
 
         response = self.llm_client.responses.create(
             model=self.model,
-            input=input_messages
+            input=input_messages,
+            max_output_tokens=300
         )
 
         return response.output_text
